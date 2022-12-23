@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}
+Paper Details
+{% endblock title %}
+
+
+
+{% block body %}
+ <h3 class="text-center"><span>Paper Details</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">P_ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Abstract</th>
+      <th scope="col">Date of Publish</th>
+      <th scope="col">Field of Research</th>
+      <th scope="col">Published By</th>
+      <th scope="col">Author Name</th>
+       <th scope="col">Likes</th>
+      <th scope="col">Link</th>
+      <th scope="col">Liked</th>
+      <th scope="col">Bookmark</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+      <th scope="row">{{post.P_ID}}</th>
+      <td>{{post.Title}}</td>
+      <td>{{post.Abstract}}</td>
+      <td>{{post.Date_of_Publish}}</td>
+      <td>{{post.Field_Of_research}}</td>
+      <td>{{post.Name}}</td>
+      <td>{{post.name}}</td>
+       <td>{{post.likes}}</td>
+    
+       <td><a href={{post.link}}><button class="btn btn-success">Link</button> </a></td>
+   
+    <td><a href="/edit/{{post.P_ID}}/{{post.id}}"><button class="btn btn-success">Like </button> </a> </td>
+    <td><a href="/toberead/{{post.P_ID}}/{{post.id}}"><button class="btn btn-primary">Bookmark </button> </a> </td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+{% endblock body %}

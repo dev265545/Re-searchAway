@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+Add Paper
+{% endblock title %}
+
+
+
+{% block body %}
+ <h3 class="text-center"><span>Add Research Paper Details</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4"></div>
+<div class="col-md-4">
+
+<form action="/addpaper" method="post">
+<!-- <div class="form-group">
+
+<label for="rollno">Roll Number</label>
+<input type="text" class="form-control" name="rollno" id="rollno">
+</div> -->
+<br>
+<div class="form-group">
+
+<label for="papername">Paper Title</label>
+<input type="text" class="form-control" name="papername" id="papername">
+</div>
+<br>
+<!-- <div class="form-group">
+
+<label for="sem">Add</label>
+<input type="number" class="form-control" name="sem" id="sem">
+</div> -->
+<br>
+<div class="form-group">                          
+<input type="date" class="form-control" name="date" id="date">
+ </div>
+<br>
+
+<div class="form-group">                          
+<select class="form-control" id="publisher" name="publisher"  required>
+        <option selected>Select Publisher</option>
+        {% for d in dept  %}
+        <option value="{{d.Pub_id}}">{{d.Name}}</option>
+        {% endfor %}
+      </select>
+ </div>
+<br>
+<div class="form-group">
+
+<label for="abstract">Abstract</label>
+<textarea type="text" class="form-control" name="abstract" id="abstract" ></textarea>
+</div>
+<br>
+<div class="form-group">
+  <label for="auth_id">Author ID</label>
+  <input type="text" class="form-control" name="auth_id" id="auth_id">
+</div>
+<div class="form-group">
+<label for="field">Field of Research</label>
+<input type="text" class="form-control" name="field" id="field">
+</div>
+<br>
+<div class="form-group">
+<label for="link">Link to the paper</label>
+<input type="url" class="form-control" name="link" id="link">
+</div>
+<br>
+<br>
+  
+  <button type="submit" class="btn btn-danger btn-sm btn-block">Add Record</button>
+</form>
+<br>
+<br>
+
+</div>
+
+<div class="col-md-4"></div>
+
+</div></div>
+
+
+
+{% endblock body %}
